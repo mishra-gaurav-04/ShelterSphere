@@ -3,6 +3,10 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/init_db');
 const createError = require('http-errors');
+const authRoutes = require('./routes/auth.routes');
+const userRoutes = require('./routes/user.routes');
+const listingRoutes = require('./routes/listing.routes');
+
 const app = express();
 
 dotenv.config();
@@ -12,6 +16,10 @@ const MONGODB_URI = process.env.MONGO_URI;
 
 app.use(express.json());
 app.use(cors());
+
+app.use('/api/v1/auth',authRoutes);
+app.use('/api/v1/listing',listingRoutes);
+app.use('/api/v1/user',userRoutes);
 
 app.use(async(req,res,next) => {
     next(createError.NotFound());
