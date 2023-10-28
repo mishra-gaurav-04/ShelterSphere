@@ -34,7 +34,7 @@ const signRefreshToken = (userId) => {
             issuer : 'localhost',
             audience : userId
         };
-        jwt.sign(payload,accessTokenSecret,options,(err,token) =>{
+        jwt.sign(payload,refreshTokenSecret,options,(err,token) =>{
             if(err){
                 console.log(err)
                 return reject(createError.InternalServerError());
