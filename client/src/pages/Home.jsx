@@ -4,6 +4,7 @@ import {Swiper,SwiperSlide} from 'swiper/react';
 import {Navigation} from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
+import ListingCards from '../components/ListingCards';
 
 const Home = () => {
   return (
@@ -18,7 +19,7 @@ const Home = () => {
             <Link className='text-sm font-semibold text-blue-800'>Let's Start Now ...</Link>
         </div>
         <div>
-
+          <ListingCards/>
         </div>
     </div>
   )
