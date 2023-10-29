@@ -8,7 +8,7 @@ class UserData{
         this._id = user._id;
         this.email = user.email;
         this.name = user.name;
-        this.imageUrl = user.imageUrl;
+        this.avatar = user.avatar;
     }
 }
 
