@@ -23,7 +23,8 @@ exports.signUp = async(req,res,next) => {
         res.status(201).json({
             status : 'success',
             message : 'User Created Successfully',
-            userData
+            userData,
+            accessToken
         })
     }
     catch(error){
@@ -60,12 +61,13 @@ exports.signIn = async(req,res,next) => {
         res.status(200).json({
             status : 'Success',
             message : 'User Logged In Successfully',
-            userData
+            userData,
+            accessToken
         });
     }
     catch(error){
         if(error.isJoi === true){
-            error.status = 422;
+            return next(createError.BadRequest('Invalid email or password'))
         }
         next(error);
     }

@@ -44,7 +44,25 @@ const signRefreshToken = (userId) => {
     })
 }
 
+const verifyAccessToken = (req,res,next) => {
+    const token = req.cookies.accessToken;
+
+    if(!token){
+        return next(createError.Unauthorized());
+    }
+
+    jwt.verify(token,accessTokenSecret,(err,payload) => {
+        if(err){
+            const message = err.name === 'JsonWebTokenError' ? 'Unauthorized' : err.message;
+            return next(createError.Unauthorized(message));
+        }
+        req.payload = payload;
+        next();
+    })
+}
+
 module.exports = {
     signAccessToken,
-    signRefreshToken
+    signRefreshToken,
+    verifyAccessToken
 }
