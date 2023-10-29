@@ -34,3 +34,39 @@ exports.signUp = async(req,res,next) => {
     }
 }
 
+exports.signIn = async(req,res,next) => {
+    try{
+        const result = await loginSchema.validateAsync(req.body);
+        const user = await User.findOne({email : result.email});
+
+        if(!user){
+            throw createError.NotFound('User Not Found');
+        }
+
+        const isValid = await user.isValidPassword(result.password);
+
+        if(!isValid){
+            throw createError.Unauthorized('Invalid Email or Password');
+        }
+
+        const accessToken = await signAccessToken(user.id);
+        const refreshToken = await signRefreshToken(user.id);
+
+        res.cookie('accessToken',accessToken,{httpOnly : true,maxAge : 60*60*1000});
+        res.cookie('refrehToken',refreshToken,{httpOnly:true,maxAge:24*60*60*1000});
+
+        const userData = new UserData(user);
+
+        res.status(200).json({
+            status : 'Success',
+            message : 'User Logged In Successfully',
+            userData
+        });
+    }
+    catch(error){
+        if(error.isJoi === true){
+            error.status = 422;
+        }
+        next(error);
+    }
+}
