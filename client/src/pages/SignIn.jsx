@@ -17,19 +17,21 @@ const SignIn = () => {
     });
   }
   const handleSubmit = async(event) => {
+    event.preventDefault();
     try{
       dispatch(setAuthStart)
       const res = await signIn(JSON.stringify(fromData));
-      const data = await res.json();
-      if(data.success === false){
-        dispatch(setAuthFailure(data.message));
+      console.log('Response from singin',res);
+      const data = await res.userData;
+      if(res.success === false){
+        dispatch(setAuthFailure('Something Went Wrong'));
         return;
       }
       dispatch(setAuthSuccess(data));
       navigate('/listings')
     }
-    catch(error){
-
+    catch(err){
+      dispatch(setAuthFailure(err.message));
     }
   }
   return (

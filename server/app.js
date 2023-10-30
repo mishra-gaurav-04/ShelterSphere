@@ -27,7 +27,7 @@ app.use('/api/v1/listing',listingRoutes);
 app.use('/api/v1/user',userRoutes);
 
 app.use(async(req,res,next) => {
-    next(createError.NotFound());
+    next(createError.NotFound('Route not found'));
 })
 
 app.use(async(err,req,res,next) => {

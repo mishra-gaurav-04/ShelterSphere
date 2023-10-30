@@ -26,7 +26,7 @@ const SignUp = () => {
         const res = await signUp(JSON.stringify(formData));
         // console.log('Response from the Signup',res);
         const data = await res.userData;
-        if(data.status === 'fail'){
+        if(res.status === false){
          dispatch(setAuthFailure('Something Went Wrong'));
           return;
         }

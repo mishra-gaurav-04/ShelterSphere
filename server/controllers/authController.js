@@ -21,7 +21,7 @@ exports.signUp = async(req,res,next) => {
 
         const userData = new UserData(newUser);
         res.status(201).json({
-            status : 'success',
+            status : true,
             message : 'User Created Successfully',
             userData,
             // accessToken
@@ -38,13 +38,14 @@ exports.signUp = async(req,res,next) => {
 exports.signIn = async(req,res,next) => {
     try{
         const result = await loginSchema.validateAsync(req.body);
-        const user = await User.findOne({email : result.email});
-
+        // console.log(result.password);
+        const user = await User.findOne({email : result.email}).select('+password');
+        // console.log(user.password);
         if(!user){
             throw createError.NotFound('User Not Found');
         }
 
-        const isValid = await user.isValidPassword(result.password);
+        const isValid = await user.correctPassword(result.password,user.password);
 
         if(!isValid){
             throw createError.Unauthorized('Invalid Email or Password');
@@ -59,16 +60,17 @@ exports.signIn = async(req,res,next) => {
         const userData = new UserData(user);
 
         res.status(200).json({
-            status : 'Success',
+            status : true,
             message : 'User Logged In Successfully',
             userData,
-            accessToken
+            // accessToken
         });
     }
     catch(error){
         if(error.isJoi === true){
             return next(createError.BadRequest('Invalid email or password'))
         }
+        // console.log(error);
         next(error);
     }
 }
@@ -78,7 +80,7 @@ exports.signIn = async(req,res,next) => {
         res.clearCookie('accessToken');
         res.clearCookie('refreshToken');
         res.status(200).json({
-            status : 'Success',
+            status : true,
             message : 'User logged out successfully'
         })
     }
