@@ -22,7 +22,7 @@ const SignUp = () => {
       try{
         setLoading(true);
         const res = await signUp(JSON.stringify(formData));
-        console.log('Response from the signup page',res);
+        // console.log('Response from the signup page',res);
 
         const data = await res.json();
         // console.log(data);

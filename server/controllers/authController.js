@@ -73,3 +73,16 @@ exports.signIn = async(req,res,next) => {
     }
 }
 
+ exports.signOut = async(req,res,next) => {
+    try{
+        res.clearCookie('accessToken');
+        res.clearCookie('refreshToken');
+        res.status(200).json({
+            status : 'Success',
+            message : 'User logged out successfully'
+        })
+    }
+    catch(err){
+        next(error);
+    }
+ }

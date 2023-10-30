@@ -6,7 +6,7 @@ router.post('/sign-up',authController.signUp);
 router.post('/sign-in',authController.signIn);
 router.post('/google');
 router.post('/refresh-token');
-router.delete('/signo-out');
+router.delete('/sign-out',authController.signOut);
 
 module.exports = router;
 
