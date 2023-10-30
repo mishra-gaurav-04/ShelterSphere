@@ -1,8 +1,10 @@
 import React from 'react'
 import {FaSearch} from 'react-icons/fa';
 import {Link} from 'react-router-dom';
+import {useSelector} from 'react-redux';
 
 const Header = () => {
+  const [isAuth,user] = useSelector((state) => state.auth);
   return (
     <header className='bg-slate-300 shadow-md'>
        <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
@@ -19,7 +21,16 @@ const Header = () => {
            <div className='flex gap-3'>
                 <Link className='hover:text-blue-800 hidden sm:inline' to='/'>Home</Link>
                 <Link className='hover:text-blue-800 hidden sm:inline' to='/about'>About</Link>
-                <Link className='hover:text-blue-800 hidden sm:inline' to='/sign-in'>SignIn</Link>
+               {
+                  isAuth ?
+                    <div>
+                        <Link to="/profile">
+                            <img src={user.avatar} alt="" className='rounded-full h-8 w-8 object-cover'/>
+                        </Link>
+                    </div> 
+                    :  
+                    <Link className='hover:text-blue-800 hidden sm:inline' to='/sign-in'>SignIn</Link>
+               }
            </div>
        </div>
     </header>

@@ -17,8 +17,8 @@ export const authSlice = createSlice({
         setAuthSuccess : (state,action) => {
             state.isAuth = true;
             state.user = action.payload;
-            state.loading = false,
-            state.error = null
+            state.loading = false;
+            state.error = null;
         },
         setAuthFailure : (state,action) => {
             state.error = action.payload;
