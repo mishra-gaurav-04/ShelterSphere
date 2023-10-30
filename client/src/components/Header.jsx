@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {useSelector} from 'react-redux';
 
 const Header = () => {
-  const [isAuth,user] = useSelector((state) => state.auth);
+  const {isAuth,user} = useSelector((state) => state.auth);
   return (
     <header className='bg-slate-300 shadow-md'>
        <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>

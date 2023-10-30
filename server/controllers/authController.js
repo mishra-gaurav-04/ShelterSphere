@@ -24,7 +24,7 @@ exports.signUp = async(req,res,next) => {
             status : 'success',
             message : 'User Created Successfully',
             userData,
-            accessToken
+            // accessToken
         })
     }
     catch(error){

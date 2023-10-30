@@ -24,16 +24,17 @@ const SignUp = () => {
       try{
         dispatch(setAuthStart());
         const res = await signUp(JSON.stringify(formData));
-        const data = await res.json();
-        if(data.success === false){
-         dispatch(setAuthFailure(data.message));
+        // console.log('Response from the Signup',res);
+        const data = await res.userData;
+        if(data.status === 'fail'){
+         dispatch(setAuthFailure('Something Went Wrong'));
           return;
         }
         dispatch(setAuthSuccess(data));
         navigate('/listings');
       }
       catch(err){
-        dispatch(setAuthFailure(error.message));
+        dispatch(setAuthFailure(err.message));
       }
   }
 
