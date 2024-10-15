@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { AuthParamsType } from '@/lib/types/index';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { ForgotPassword } from './ForgotPassword';
 
 
 export const Auth = () => {
+    const [isForgotPasswordOpen,setIsForgotPasswordOpen] = useState<boolean>(false);
     const { authType } = useParams<{ authType: AuthParamsType }>();
     const isSignIn = authType === 'sign-in';
     const handleSubmit = (event: React.FormEvent) => {
@@ -88,9 +90,10 @@ export const Auth = () => {
                                 </div>
                             )
                         }
-
                         <div className='flex flex-col gap-2'>
-                            <Link className='ml-auto text-sm text-blue-700 font-medium' to="/forgot-password">Forgot Password?</Link>
+                            {
+                                isSignIn && <ForgotPassword isOpen={isForgotPasswordOpen} setIsOpen={setIsForgotPasswordOpen}/>
+                            }
                             <Button type='submit' className='w-full bg-blue-600 cursor-pointer hover:bg-blue-700'>
                                 {
                                     isSignIn ? "SignIn" : "SignUp"

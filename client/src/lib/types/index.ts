@@ -12,4 +12,9 @@ export interface SearchQuery {
     maxPrice : number
 }
 
+export type ForgotPasswordProps = {
+    isOpen : boolean,
+    setIsOpen : (value:boolean) => void
+}
+
 export type AuthParamsType = "sign-in" | "sign-up";
