@@ -1,14 +1,37 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { navLinks } from '@/lib/constants';
-import { Button } from '../ui/button';
 import Profileimg from '@/assets/profile-1.jpg';
 import { MobileNav } from './MobileNav';
 
 export const NavBar = () => {
     const isAuth: boolean = false
+    const [isFixed, setIsFixed] = useState<boolean>(false);
+    const [lastScrollY, setLastScrollY] = useState<number>(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > 25) {
+                setIsFixed(true);
+            } else {
+                setIsFixed(false);
+            }
+            if (currentScrollY < lastScrollY) {
+                setIsFixed(false);
+            }
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [lastScrollY]);
+
     return (
-        <header className='w-full fixed z-30 top-0'>
+        <header className={`w-full fixed z-30 top-0 ${isFixed ? 'transition-all duration-200 bg-white bg-opacity-95 shadow-md' : ''}`}>
             <nav className='container mx-auto py-6 px-3 flex items-center  justify-between'>
                 <Link to="/" className='text-2xl font-bold text-slate-500'>Shelter<span className='text-slate-400'>Sphere</span></Link>
                 <div className='hidden ml-32 md:flex items-center gap-12'>
@@ -27,8 +50,8 @@ export const NavBar = () => {
                         </div>
                     ) : (
                         <div className='hidden md:flex items-center gap-4'>
-                            <Button variant='outline' size='lg' className='font-semibold py-6'>SignIn</Button>
-                            <Button size='lg' className='bg-yellow-300 text-black font-semibold py-6 hover:bg-yellow-200'>SignUp</Button>
+                            <Link to="/auth/sign-in" className='bg-white px-4 py-3 rounded-lg shadow-xl border-2 border-gray-600 font-bold text-md'>SignIn</Link>
+                            <Link to="/auth/sign-up" className='bg-yellow-400 px-4 py-3 rounded-lg shadow-xl border-2 border-yellow-600 text-slate-500 text-md font-bold'>SignUp</Link>
                         </div>
                     )
                 }

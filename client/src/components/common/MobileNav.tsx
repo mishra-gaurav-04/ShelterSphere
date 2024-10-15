@@ -34,15 +34,15 @@ export const MobileNav = () => {
                 </div>
                 <Separator />
                 {
-                    isAuth  ? (
+                    isAuth ? (
                         <div className='flex items-center gap-3 mt-6'>
                             <img src={Profileimg} alt="profile-pic" className='w-12 h-12 rounded-full border-2 border-gray-400' />
                             <Link to="/profile" className='font-medium text-md'>Gaurav Mishra</Link>
                         </div>
                     ) : (
                         <div className='flex items-center gap-4 mt-6'>
-                            <Button  variant='outline' size='lg' className='font-semibold py-6'>SignIn</Button>
-                            <Button size='lg' className='bg-yellow-300 text-black font-semibold py-6 hover:bg-yellow-200'>SignUp</Button>
+                            <Link to="/auth/sign-in" className='bg-white px-4 py-3 rounded-lg shadow-xl border-2 border-gray-600 font-bold text-md'>SignIn</Link>
+                            <Link to="/auth/sign-up" className='bg-yellow-400 px-4 py-3 rounded-lg shadow-xl border-2 border-yellow-600 text-slate-500 text-md font-bold'>SignUp</Link>
                         </div>
                     )
                 }

@@ -11,3 +11,5 @@ export interface SearchQuery {
     minPrice : number,
     maxPrice : number
 }
+
+export type AuthParamsType = "sign-in" | "sign-up";

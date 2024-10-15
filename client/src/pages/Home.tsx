@@ -21,7 +21,7 @@ export const Home = () => {
       </div>
       <div className='col-span-1 md:col-span-5 bg-[#fcf5f3]'>
         <div className='relative top-16'>
-          <img src={bgImg} alt="bg-img" className='mt-20 absolute w-full'/>
+          <img src={bgImg} alt="bg-img" className='mt-20 absolute md:-left-6 w-full object-cover'/>
         </div>
       </div>
     </div>
