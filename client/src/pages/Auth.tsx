@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { ForgotPassword } from './ForgotPassword';
+import { ForgotPassword } from '../components/common/ForgotPassword';
 
 
 export const Auth = () => {
-    const [isForgotPasswordOpen,setIsForgotPasswordOpen] = useState<boolean>(false);
+    const [isForgotPasswordOpen, setIsForgotPasswordOpen] = useState<boolean>(false);
     const { authType } = useParams<{ authType: AuthParamsType }>();
     const isSignIn = authType === 'sign-in';
     const handleSubmit = (event: React.FormEvent) => {
@@ -64,6 +64,20 @@ export const Auth = () => {
                         </h1>
                     </div>
                     <form onSubmit={handleSubmit} className='space-y-4 md:space-y-6'>
+                        {
+                            !isSignIn && (
+                                <div className='flex items-center justify-between gap-2'>
+                                    <div>
+                                        <label htmlFor="name" className='block mb-2 text-sm font-medium text-gray-900'>Name</label>
+                                        <input type="text" name='name' id='name' placeholder='enter your name' className='bg-gray-50 border text-gray-900 text-sm rounded-lg focus:border-primary-600 block w-full p-2.5  focus:ring-primary-600 border-gray-300' />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="contact" className='block mb-2 text-sm font-medium text-gray-900'>Contact No</label>
+                                        <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name='contact' id='contact' placeholder='contact number' className='bg-gray-50 border text-gray-900 text-sm rounded-lg focus:border-primary-600 block w-full p-2.5  focus:ring-primary-600 border-gray-300' />
+                                    </div>
+                                </div>
+                            )
+                        }
                         <div>
                             <label htmlFor="email" className='block mb-2 text-sm font-medium text-gray-900'>Your Email</label>
                             <input type="email" name='email' id='email' placeholder='your@email.com' className='bg-gray-50 border text-gray-900 text-sm rounded-lg focus:border-primary-600 block w-full p-2.5  focus:ring-primary-600 border-gray-300' />
@@ -92,7 +106,7 @@ export const Auth = () => {
                         }
                         <div className='flex flex-col gap-2'>
                             {
-                                isSignIn && <ForgotPassword isOpen={isForgotPasswordOpen} setIsOpen={setIsForgotPasswordOpen}/>
+                                isSignIn && <ForgotPassword isOpen={isForgotPasswordOpen} setIsOpen={setIsForgotPasswordOpen} />
                             }
                             <Button type='submit' className='w-full bg-blue-600 cursor-pointer hover:bg-blue-700'>
                                 {
