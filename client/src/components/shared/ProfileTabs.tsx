@@ -5,7 +5,7 @@ import { MyBookingsTable } from './MyBookingsTable';
 
 export const ProfileTabs = () => {
     return (
-        <Tabs defaultValue="account" className="w-full">
+        <Tabs defaultValue="mylistings" className="w-full">
             <TabsList>
                 <TabsTrigger value="mylistings">My Listings</TabsTrigger>
                 <TabsTrigger value="mybookings">My Bookings</TabsTrigger>
