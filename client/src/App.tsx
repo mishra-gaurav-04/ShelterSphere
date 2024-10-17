@@ -1,6 +1,6 @@
 import React from 'react'
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
-import {NavBar} from '@/components/common/NavBar';
+import {NavBar} from '@/components/shared/NavBar';
 import {Home,Listings,Agents,Profile,Listing,Auth} from '@/pages';
 
 const App = () => {

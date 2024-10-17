@@ -1,11 +1,11 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { navLinks } from '@/lib/constants';
-import Profileimg from '@/assets/profile-1.jpg';
 import { MobileNav } from './MobileNav';
+import { Menu } from './Menu';
 
 export const NavBar = () => {
-    const isAuth: boolean = false
+    const isAuth: boolean = true;
     const [isFixed, setIsFixed] = useState<boolean>(false);
     const [lastScrollY, setLastScrollY] = useState<number>(0);
 
@@ -24,7 +24,7 @@ export const NavBar = () => {
         };
 
         window.addEventListener('scroll', handleScroll);
-        
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
@@ -45,8 +45,10 @@ export const NavBar = () => {
                 {
                     isAuth ? (
                         <div className='hidden md:flex items-center gap-3'>
-                            <img src={Profileimg} alt="profile-pic" className='w-12 h-12 rounded-full border-2 border-gray-400' />
-                            <Link to="/profile" className='font-medium text-md'>Gaurav Mishra</Link>
+                            <div className='relative'>
+                                <Menu />
+                                <div className='absolute left-[-4px] top-[-12px] bg-red-600 text-white rounded-full font-semibold text-center w-[24px] h-[24px]'>1</div>
+                            </div>
                         </div>
                     ) : (
                         <div className='hidden md:flex items-center gap-4'>

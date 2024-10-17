@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { ForgotPassword } from '../components/common/ForgotPassword';
+import { ForgotPassword } from '../components/shared/ForgotPassword';
 
 
 export const Auth = () => {
@@ -41,7 +41,7 @@ export const Auth = () => {
         }
     }
     return (
-        <div className='w-full mt-32 fixed top-4'>
+        <div className='w-full mt-24 fixed top-4 pb-24'>
             <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -55,7 +55,7 @@ export const Auth = () => {
             />
             <div className='flex flex-col items-center px-6 py-8 mx-auto md:h-screen lg:py-6 '>
                 <Link to="/" className='text-2xl font-bold text-slate-500'>Shelter<span className='text-slate-400'>Sphere</span></Link>
-                <div className='w-full bg-white rounded-lg p-4 shadow md:mt-0 sm:max-w-md xl:p-6 '>
+                <div className='w-full bg-white rounded-lg p-4 shadow-xl md:mt-0 sm:max-w-md xl:p-6 '>
                     <div className='p-6 space-y-4 flex items-center justify-center md:space-y-6 sm:p-8'>
                         <h1 className='text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl '>
                             {

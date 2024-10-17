@@ -1,6 +1,6 @@
 import React from 'react';
-import Analytics from '@/components/common/Analytics';
-import Search from '@/components/common/Search';
+import Analytics from '@/components/shared/Analytics';
+import Search from '@/components/shared/Search';
 import { analytics } from '@/lib/constants';
 import bgImg from '@/assets/bg.png';
 

@@ -4,7 +4,7 @@ import { Agents } from "./Agents";
 import {Profile} from "./Profile";
 import { Listing } from "./Listing";
 import { Auth } from "./Auth";
-import {ForgotPassword} from '../components/common/ForgotPassword';
+import {ForgotPassword} from '../components/shared/ForgotPassword';
 
 
 export {

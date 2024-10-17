@@ -1,0 +1,8 @@
+1 profile
+2 litings
+3 agents
+4 my-listings
+5 saved places
+6 dashboard
+7 add check for forgot password modal
+8 reset pasword page
