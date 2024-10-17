@@ -19,6 +19,7 @@ export const MyBookingsTable = () => {
         <TableHead className="w-[100px]">Date</TableHead>
         <TableHead>Status</TableHead>
         <TableHead>Method</TableHead>
+        <TableHead>Business Type</TableHead>
         <TableHead>Agent Name</TableHead>
         <TableHead className="text-right">Amount</TableHead>
       </TableRow>
@@ -28,6 +29,7 @@ export const MyBookingsTable = () => {
         <TableCell className="font-medium">INV001</TableCell>
         <TableCell>Paid</TableCell>
         <TableCell>Credit Card</TableCell>
+        <TableCell>Rent</TableCell>
         <TableCell>Jane</TableCell>
         <TableCell className="text-right">$250.00</TableCell>
       </TableRow>
@@ -35,6 +37,7 @@ export const MyBookingsTable = () => {
         <TableCell className="font-medium">INV001</TableCell>
         <TableCell>Paid</TableCell>
         <TableCell>Credit Card</TableCell>
+        <TableCell>Rent</TableCell>
         <TableCell>Jane</TableCell>
         <TableCell className="text-right">$250.00</TableCell>
       </TableRow>
@@ -42,6 +45,7 @@ export const MyBookingsTable = () => {
         <TableCell className="font-medium">INV001</TableCell>
         <TableCell>Paid</TableCell>
         <TableCell>Credit Card</TableCell>
+        <TableCell>Rent</TableCell>
         <TableCell>Jane</TableCell>
         <TableCell className="text-right">$250.00</TableCell>
       </TableRow>
@@ -49,6 +53,7 @@ export const MyBookingsTable = () => {
         <TableCell className="font-medium">INV001</TableCell>
         <TableCell>Paid</TableCell>
         <TableCell>Credit Card</TableCell>
+        <TableCell>Rent</TableCell>
         <TableCell>Jane</TableCell>
         <TableCell className="text-right">$250.00</TableCell>
       </TableRow>
@@ -56,6 +61,7 @@ export const MyBookingsTable = () => {
         <TableCell className="font-medium">INV001</TableCell>
         <TableCell>Paid</TableCell>
         <TableCell>Credit Card</TableCell>
+        <TableCell>Rent</TableCell>
         <TableCell>Jane</TableCell>
         <TableCell className="text-right">$250.00</TableCell>
       </TableRow>
@@ -63,6 +69,7 @@ export const MyBookingsTable = () => {
         <TableCell className="font-medium">INV001</TableCell>
         <TableCell>Paid</TableCell>
         <TableCell>Credit Card</TableCell>
+        <TableCell>Rent</TableCell>
         <TableCell>Jane</TableCell>
         <TableCell className="text-right">$250.00</TableCell>
       </TableRow>
@@ -70,6 +77,7 @@ export const MyBookingsTable = () => {
         <TableCell className="font-medium">INV001</TableCell>
         <TableCell>Paid</TableCell>
         <TableCell>Credit Card</TableCell>
+        <TableCell>Rent</TableCell>
         <TableCell>Jane</TableCell>
         <TableCell className="text-right">$250.00</TableCell>
       </TableRow>
@@ -77,6 +85,7 @@ export const MyBookingsTable = () => {
         <TableCell className="font-medium">INV001</TableCell>
         <TableCell>Paid</TableCell>
         <TableCell>Credit Card</TableCell>
+        <TableCell>Rent</TableCell>
         <TableCell>Jane</TableCell>
         <TableCell className="text-right">$250.00</TableCell>
       </TableRow>
@@ -84,6 +93,7 @@ export const MyBookingsTable = () => {
         <TableCell className="font-medium">INV001</TableCell>
         <TableCell>Paid</TableCell>
         <TableCell>Credit Card</TableCell>
+        <TableCell>Rent</TableCell>
         <TableCell>Jane</TableCell>
         <TableCell className="text-right">$250.00</TableCell>
       </TableRow>
@@ -91,6 +101,7 @@ export const MyBookingsTable = () => {
         <TableCell className="font-medium">INV001</TableCell>
         <TableCell>Paid</TableCell>
         <TableCell>Credit Card</TableCell>
+        <TableCell>Rent</TableCell>
         <TableCell>Jane</TableCell>
         <TableCell className="text-right">$250.00</TableCell>
       </TableRow>
@@ -98,6 +109,7 @@ export const MyBookingsTable = () => {
         <TableCell className="font-medium">INV001</TableCell>
         <TableCell>Paid</TableCell>
         <TableCell>Credit Card</TableCell>
+        <TableCell>Rent</TableCell>
         <TableCell>Jane</TableCell>
         <TableCell className="text-right">$250.00</TableCell>
       </TableRow>
@@ -105,6 +117,7 @@ export const MyBookingsTable = () => {
         <TableCell className="font-medium">INV001</TableCell>
         <TableCell>Paid</TableCell>
         <TableCell>Credit Card</TableCell>
+        <TableCell>Rent</TableCell>
         <TableCell>Jane</TableCell>
         <TableCell className="text-right">$250.00</TableCell>
       </TableRow>
@@ -112,9 +125,28 @@ export const MyBookingsTable = () => {
         <TableCell className="font-medium">INV001</TableCell>
         <TableCell>Paid</TableCell>
         <TableCell>Credit Card</TableCell>
+        <TableCell>Rent</TableCell>
         <TableCell>Jane</TableCell>
         <TableCell className="text-right">$250.00</TableCell>
       </TableRow>
+      <TableRow>
+        <TableCell className="font-medium">INV001</TableCell>
+        <TableCell>Paid</TableCell>
+        <TableCell>Credit Card</TableCell>
+        <TableCell>Rent</TableCell>
+        <TableCell>Jane</TableCell>
+        <TableCell className="text-right">$250.00</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell className="font-medium">INV001</TableCell>
+        <TableCell>Paid</TableCell>
+        <TableCell>Credit Card</TableCell>
+        <TableCell>Rent</TableCell>
+        <TableCell>Jane</TableCell>
+        <TableCell className="text-right">$250.00</TableCell>
+      </TableRow>
+      
+  
     </TableBody>
   </Table>
   

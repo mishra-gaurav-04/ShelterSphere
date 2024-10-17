@@ -21,8 +21,8 @@ const Search = () => {
     return (
         <div className='flex flex-col gap-4 px-4 xl:px-0'>
             <div className='flex items-center gap-2'>
-                <div className={`border-2 px-6 py-4 cursor-pointer rounded-md font-medium text-lg bg-white ${queryType === 'Buy' ? 'bg-black text-white' : 'bg-white text-black'}`} onClick={() => handleQueryChange('Buy')}>Buy</div>
-                <div className={`border-2 px-6 py-4 font-medium cursor-pointer text-lg rounded-md ${queryType === 'Rent' ? 'bg-black text-white' : 'bg-white text-black'}`} onClick={() => handleQueryChange('Rent')}>Rent</div>
+                <button className={`border-2 px-6 py-4 cursor-pointer rounded-md font-medium text-lg ${queryType === 'Buy' ? 'bg-black text-white' : 'bg-white text-black'}`} onClick={() => handleQueryChange('Buy')}>Buy</button>
+                <button className={`border-2 px-6 py-4 font-medium cursor-pointer text-lg rounded-md ${queryType === 'Rent' ? 'bg-black text-white' : 'bg-white text-black'}`} onClick={() => handleQueryChange('Rent')}>Rent</button>
             </div>
             <div className='flex gap-2 xl:gap-0 xl:items-center flex-col xl:flex-row '>
                 <input type="text" placeholder='Enter City Name' className='py-5 border-2 rounded-sm px-2' name='city' onChange={handleInputChange}/>

@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import {useState} from 'react';
 import {
     Sheet,
     SheetContent,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
-} from "@/components/ui/sheet"
+} from "@/components/ui/sheet";
 import { Button } from '../ui/button'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { Link } from 'react-router-dom';
@@ -15,9 +16,15 @@ import Profileimg from '@/assets/profile-1.jpg'
 
 
 export const MobileNav = () => {
-    const isAuth: boolean = false
+    const [isOpen,setIsOpen] = useState<boolean>(false);
+
+    const isAuth: boolean = true
+
+    const handleClick = () => {
+        setIsOpen(false);
+    }
     return (
-        <Sheet>
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger>
                 <Button variant='outline' className='text-lg font-semibold md:hidden' size='lg'><RxHamburgerMenu /></Button>
             </SheetTrigger>
@@ -37,7 +44,7 @@ export const MobileNav = () => {
                     isAuth ? (
                         <div className='flex items-center gap-3 mt-6'>
                             <img src={Profileimg} alt="profile-pic" className='w-12 h-12 rounded-full border-2 border-gray-400' />
-                            <Link to="/profile" className='font-medium text-md'>Gaurav Mishra</Link>
+                            <Link to="/profile" className='font-medium text-md ' onClick={handleClick}>Gaurav Mishra</Link>
                         </div>
                     ) : (
                         <div className='flex items-center gap-4 mt-6'>

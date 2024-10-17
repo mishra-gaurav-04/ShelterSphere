@@ -24,11 +24,8 @@ export const Menu = () => {
                 <DropdownMenuItem>
                     <Link to="/profile">Profile</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                    <Link to="/my-listings">My Listings</Link>
-                </DropdownMenuItem>
                 <DropdownMenuItem>Messages</DropdownMenuItem>
-                <DropdownMenuItem>Saved Places</DropdownMenuItem>
+
                 <Separator />
                 <DropdownMenuItem>SignOut</DropdownMenuItem>
             </DropdownMenuContent>
