@@ -18,7 +18,7 @@ export const ListingsCards = () => {
                     <div className='flex justify-between'>
                         <div className='flex items-center gap-2'>
                             <p className='flex items-center gap-2 text-gray-600 px-2 py-1 bg-gray-300 font-bold rounded-md'><LuBedSingle /> 2 bedroom</p>
-                            <p className='flex items-center gap-2 text-gray-600 bg-gray-300 font-bold rounded-md px-2 py-1'><LuBedSingle /> 2 bedroom</p>
+                            <p className='flex items-center gap-2 text-gray-600 bg-gray-300 font-bold rounded-md px-2 py-1'><LiaBathSolid /> 2 bedroom</p>
                         </div>
                         <div className='flex items-center gap-4'>
                             <div className='border rounded-xl w-10 h-10 flex items-center justify-center bg-white shadow-xl cursor-pointer'><BiMessageSquareDots /></div>

@@ -21,7 +21,7 @@ import { BiMessageSquareDots } from "react-icons/bi";
 export const Listing = () => {
     return (
         <div className='container mx-auto grid grid-cols-1 md:grid-cols-12 min-h-screen gap-4 pb-10'>
-            <div className='col-span-1 md:col-span-7 mt-32 md:mt-50 flex flex-col gap-6'>
+            <div className='col-span-1 md:col-span-7 mt-32 md:mt-48 flex flex-col gap-6'>
                 <div className='grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-2'>
                     <div className='col-span-2 row-span-3 '>
                         <img src={house1} alt="house-image" className='w-full rounded-md h-full object-center' />
