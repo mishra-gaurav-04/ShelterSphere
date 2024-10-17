@@ -1,7 +1,7 @@
 import React from 'react'
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
 import {NavBar} from '@/components/shared/NavBar';
-import {Home,Listings,Agents,Profile,Listing,Auth} from '@/pages';
+import {Home,Listings,Agents,Profile,Listing,Auth,ResetPassword} from '@/pages';
 
 const App = () => {
   return (
@@ -15,6 +15,7 @@ const App = () => {
         <Route path='/agents' element={<Agents/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/auth/:authType' element={<Auth/>}/>
+        <Route path='/auth/reset-password/:resetToken' element={<ResetPassword/>}/>
       </Routes>
     </BrowserRouter>
   )
