@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import {ListingsCards} from "./ListingsCards";
+import { MyBookingsTable } from './MyBookingsTable';
 
 export const ProfileTabs = () => {
     return (
@@ -18,7 +19,9 @@ export const ProfileTabs = () => {
                 <ListingsCards/>
                 <ListingsCards/>
             </TabsContent>
-            <TabsContent value="mybookings">My Bookings.</TabsContent>
+            <TabsContent value="mybookings">
+                <MyBookingsTable/>
+            </TabsContent>
             <TabsContent value="savedplaces" className='flex flex-col gap-2'>
                 <ListingsCards/>
                 <ListingsCards/>
