@@ -1,27 +1,38 @@
 import {transports,format} from 'winston';
-import {WinstonModule, utilities as nestWinstonModuleUtilities} from 'nest-winston';
+import {WinstonModule} from 'nest-winston';
+import 'winston-daily-rotate-file';
 
-export const LoggerFactory = (appName : string) => {
-    let consoleFormat;
-    const DEBUG = process.env.DEBUG;
-    const USE_JSON_LOGGER = process.env.USE_JSON_LOGGER;
+export const LoggerFactory = (appName:string) => {
+   return WinstonModule.createLogger({
+        transports : [
+            new transports.DailyRotateFile({
+                filename : `logs/%%DATE%%-error.log`,
+                level : 'error',
+                format : format.combine(format.timestamp(),format.json()),
+                datePattern : 'YYYY-MM-DD',
+                zippedArchive :false,
+                maxFiles : '1d'
+            }),
 
-    if(USE_JSON_LOGGER === 'true'){
-        consoleFormat = format.combine(format.ms(),format.timestamp(),format.json());
-    }
-    else{
-        consoleFormat = format.combine(
-            format.timestamp(),
-            format.ms(),
-            nestWinstonModuleUtilities.format.nestLike(appName,{
-                colors : true,
-                prettyPrint : true
+            new transports.DailyRotateFile({
+                filename : `logs/%DATE%-combined.log`,
+                format : format.combine(format.timestamp(),format.json()),
+                datePattern : 'YYYY-DD-MM',
+                zippedArchive : false,
+                maxFiles : '1d'
+            }),
+
+            new transports.Console({
+                format : format.combine(
+                    format.cli(),
+                    format.splat(),
+                    format.timestamp(),
+                    format.colorize(),
+                    format.printf((info) => {
+                        return `${appName}::${info.timestamp}::${info.level}::${info.message}`;
+                    })
+                )
             })
-        );
-    }
-
-    return WinstonModule.createLogger({
-        level : DEBUG ? 'debug' : 'info',
-        transports : [new transports.Console({format:consoleFormat})],
-    });
-};
+        ]
+    })
+}
