@@ -20,7 +20,7 @@ model User {
   email          String  @unique
   password       String
   location       String
-  Country        String
+  country        String
   profilePicLink String  @default("https://res.cloudinary.com/dk9oaz7dv/image/upload/v1729258292/default-pic_iogxt0.png")
   isOwner        Boolean @default(false)
 }
@@ -31,5 +31,5 @@ model Listings {
   location    String
   description String
   images      String[]
-  
+
 }

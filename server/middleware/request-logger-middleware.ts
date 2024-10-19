@@ -4,7 +4,7 @@ import { getStatusMessage } from 'src/utils/statusCode-meessage';
 
 @Injectable()
 export class RequestLoggerMiddleware implements NestMiddleware{
-    private readonly logger = new Logger()
+    private readonly logger = new Logger();
     use(req: Request, res: Response, next: NextFunction) {
         res.on('finish',() => {
             const statusCode : number = res?.statusCode;
