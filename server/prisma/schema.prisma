@@ -14,11 +14,22 @@ datasource db {
 }
 
 model User {
-  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  id             String  @id @default(auto()) @map("_id") @db.ObjectId
   name           String
-  email          String @unique
+  contactNumber  String
+  email          String  @unique
   password       String
   location       String
   Country        String
-  profilePicLink String @default("https://res.cloudinary.com/dk9oaz7dv/image/upload/v1729258292/default-pic_iogxt0.png")
+  profilePicLink String  @default("https://res.cloudinary.com/dk9oaz7dv/image/upload/v1729258292/default-pic_iogxt0.png")
+  isOwner        Boolean @default(false)
+}
+
+model Listings {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  location    String
+  description String
+  images      String[]
+  
 }
