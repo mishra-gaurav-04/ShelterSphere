@@ -11,7 +11,7 @@ export class globalExceptionFilter implements ExceptionFilter{
         const statusCode : number = exception instanceof HttpException ? exception.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
         const message : string = exception instanceof HttpException ? exception.message : 'Internal Server Error';
 
-        this.logger.error(`{[${req.method}]::${req.url}::${statusCode}::${message} \n trace ==> ${exception.stack}}`);
+        this.logger.error(`{${message} \n trace ==> ${exception.stack}}`);
 
         res.status(statusCode).json({
             success : false,

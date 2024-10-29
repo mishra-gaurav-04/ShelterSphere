@@ -3,7 +3,7 @@ import {ConfigService} from '@nestjs/config';
 import { PrismaOrmService } from 'src/prisma-orm/prisma-orm.service';
 import {RegisterUserDTO} from './dto/register-user-dto';
 import {Prisma} from '@prisma/client';
-import * as argon from 'argon2';
+import * as bcrypt from 'bcryptjs';
 import {Logger} from '@nestjs/common';
 import {JwtService} from '@nestjs/jwt';
 import { JwtPayload, Token } from './types';
@@ -15,7 +15,7 @@ export class AuthService {
     private readonly logger = new Logger();
     async register(registerUserDTO:RegisterUserDTO) : Promise<Token>{
         try{
-            const hashPassword = await argon.hash(registerUserDTO.password);
+            const hashPassword = await bcrypt.hash(registerUserDTO.password,12);
             const newUser = await this.prisma.user.create({
                 data : {
                     name : registerUserDTO.name,
@@ -40,6 +40,10 @@ export class AuthService {
                 }
             }
         }
+    }
+
+    async login() {
+
     }
 
     async getTokens(userId:string,email:string) : Promise<Token>{
