@@ -1,14 +1,19 @@
-import { Body, Controller,Get,HttpCode,HttpStatus,Post,UsePipes } from '@nestjs/common';
+import { Body, Controller,Get,HttpCode,HttpStatus,Post,UseGuards,UsePipes } from '@nestjs/common';
 import { JoiValidationPipe } from 'src/utils/joi-validation-pipe';
 import {loginUserSchema, registerUserSchema} from './validation/auth-validation-schema';
 import { RegisterUserDTO } from './dto/register-user-dto';
 import {AuthService} from './auth.service';
 import { LoginUserDTO } from './dto/login-user-dto';
+import { Pubic } from 'src/utils/decorators/Public-Decorator';
+import { AccessGuard } from 'src/utils/guards/at-gurad';
+import { RefreshGuard } from 'src/utils/guards/rt-gurad';
 
 
 @Controller('auth')
 export class AuthController {
     constructor(private authService : AuthService){}
+    
+    @Pubic()
     @Post('/sign-up')
     @UsePipes(new JoiValidationPipe(registerUserSchema))
     @HttpCode(HttpStatus.OK)
@@ -16,7 +21,8 @@ export class AuthController {
         // TODO add cookie logic
         return this.authService.register(registerUserDto);
     }
-    
+
+    @Pubic()
     @Post('/sign-in')
     @UsePipes(new JoiValidationPipe(loginUserSchema))
     @HttpCode(HttpStatus.OK)
@@ -28,10 +34,12 @@ export class AuthController {
     @Post('/sign-out')
     logout(){}
 
+    @UseGuards(RefreshGuard)
     @Post('/refresh')
     refresh(){}
 
     @Get('/test')
+    @UseGuards(AccessGuard)
     test(){
         return "Hello this is the test route"
     }

@@ -1,10 +1,9 @@
-import {Injectable,ExecutionContext} from '@nestjs/common';
+import {Injectable,ExecutionContext,CanActivate} from '@nestjs/common';
 import {Reflector} from '@nestjs/core';
 import {AuthGuard} from '@nestjs/passport';
-import { Observable } from 'rxjs';
 
 @Injectable()
-export class AccessGuard extends AuthGuard('jwt'){
+export class AccessGuard extends AuthGuard('jwt') implements CanActivate {
     constructor(private reflector : Reflector) {
         super()
     }
