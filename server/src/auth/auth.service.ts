@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import {ConfigService} from '@nestjs/config';
 import { PrismaOrmService } from 'src/prisma-orm/prisma-orm.service';
 import {RegisterUserDTO} from './dto/register-user-dto';
@@ -7,6 +7,7 @@ import * as bcrypt from 'bcryptjs';
 import {Logger} from '@nestjs/common';
 import {JwtService} from '@nestjs/jwt';
 import { JwtPayload, Token } from './types';
+import { LoginUserDTO } from './dto/login-user-dto';
 
 
 @Injectable()
@@ -42,9 +43,32 @@ export class AuthService {
         }
     }
 
-    async login() {
+    async login(loginDto : LoginUserDTO) : Promise<Token> {
+        try{
+            const user = await this.prisma.user.findUnique({
+                where : {
+                    email : loginDto.email
+                }
+            })
 
+            if(!user){
+                throw new NotFoundException('User Not Found');
+            }
+
+            const isValid = await bcrypt.compare(loginDto.password,user.password);
+            if(!isValid){
+                throw new ForbiddenException('Email or Password is invalid');
+            }
+
+            const tokens = this.getTokens(user.id,user.email);
+            return tokens;
+        }
+        catch(error){
+            console.log(error);
+        }
     }
+
+    
 
     async getTokens(userId:string,email:string) : Promise<Token>{
         const jwtPayload : JwtPayload = {

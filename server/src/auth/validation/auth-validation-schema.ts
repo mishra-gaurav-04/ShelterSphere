@@ -7,4 +7,9 @@ export const registerUserSchema = joi.object({
     password : joi.string().required(),
     location : joi.string().required(),
     country : joi.string().required()
-})
+});
+
+export const loginUserSchema = joi.object({
+    email : joi.string().email().required(),
+    password : joi.string().required()
+});
