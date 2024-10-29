@@ -5,14 +5,15 @@ import {RegisterUserDTO} from './dto/register-user-dto';
 import {Prisma} from '@prisma/client';
 import * as argon from 'argon2';
 import {Logger} from '@nestjs/common';
-
+import {JwtService} from '@nestjs/jwt';
+import { JwtPayload, Token } from './types';
 
 
 @Injectable()
 export class AuthService {
-    constructor(private config:ConfigService,private prisma:PrismaOrmService){}
+    constructor(private config:ConfigService,private prisma:PrismaOrmService,private jwtService:JwtService){}
     private readonly logger = new Logger();
-    async register(registerUserDTO:RegisterUserDTO){
+    async register(registerUserDTO:RegisterUserDTO) : Promise<Token>{
         try{
             const hashPassword = await argon.hash(registerUserDTO.password);
             const newUser = await this.prisma.user.create({
@@ -26,7 +27,8 @@ export class AuthService {
                 }
             });
 
-            
+            const tokens = this.getTokens(newUser.id,newUser.email);
+            return tokens;
         }
         catch(error){
             if(error instanceof Prisma.PrismaClientKnownRequestError){
@@ -37,6 +39,29 @@ export class AuthService {
                     this.logger.error('Database constraints failed');
                 }
             }
+        }
+    }
+
+    async getTokens(userId:string,email:string) : Promise<Token>{
+        const jwtPayload : JwtPayload = {
+            sub : userId,
+            email : email
+        };
+
+        const [access_token,refresh_token] = await Promise.all([
+            this.jwtService.signAsync(jwtPayload,{
+                secret : this.config.get<string>('ACCESS_TOKEN_SECRET'),
+                expiresIn : this.config.get<string>('ACCESS_TOKEN_EXPIRE_TIME')
+            }),
+            this.jwtService.signAsync(jwtPayload,{
+                secret : this.config.get<string>('REFRESH_TOKEN_SECRET'),
+                expiresIn : this.config.get<string>('REFRESH_TOKEN_EXPIRE_TIME')
+            })
+        ]);
+
+        return {
+            access_token,
+            refresh_token
         }
     }
 } 
