@@ -23,6 +23,7 @@ model User {
   country        String
   profilePicLink String  @default("https://res.cloudinary.com/dk9oaz7dv/image/upload/v1729258292/default-pic_iogxt0.png")
   isOwner        Boolean @default(false)
+  refreshTokenHash String @default("")
 }
 
 

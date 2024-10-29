@@ -28,7 +28,8 @@ export class AuthService {
                 }
             });
 
-            const tokens = this.getTokens(newUser.id,newUser.email);
+            const tokens = await this.getTokens(newUser.id,newUser.email);
+            await this.updateHash(newUser.id,tokens.refresh_token);
             return tokens;
         }
         catch(error){
@@ -60,16 +61,27 @@ export class AuthService {
                 throw new ForbiddenException('Email or Password is invalid');
             }
 
-            const tokens = this.getTokens(user.id,user.email);
+            const tokens = await this.getTokens(user.id,user.email);
+            this.updateHash(user.id,tokens.refresh_token);
             return tokens;
         }
         catch(error){
-            console.log(error);
+            this.logger.error(error);
         }
     }
 
+    async updateHash(userId:string,rt:string) : Promise<void>{
+        const hash = await bcrypt.hash(rt,12);
+        await this.prisma.user.update({
+            where : {
+                id : userId
+            },
+            data : {
+                refreshTokenHash : hash
+            }
+        })
+    }
     
-
     async getTokens(userId:string,email:string) : Promise<Token>{
         const jwtPayload : JwtPayload = {
             sub : userId,
