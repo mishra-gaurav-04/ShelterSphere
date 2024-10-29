@@ -27,7 +27,6 @@ export class AuthService {
                     country : registerUserDTO.country
                 }
             });
-
             const tokens = await this.getTokens(newUser.id,newUser.email);
             await this.updateHash(newUser.id,tokens.refresh_token);
             return tokens;
@@ -51,16 +50,13 @@ export class AuthService {
                     email : loginDto.email
                 }
             })
-
             if(!user){
                 throw new NotFoundException('User Not Found');
             }
-
             const isValid = await bcrypt.compare(loginDto.password,user.password);
             if(!isValid){
                 throw new ForbiddenException('Email or Password is invalid');
             }
-
             const tokens = await this.getTokens(user.id,user.email);
             this.updateHash(user.id,tokens.refresh_token);
             return tokens;
@@ -68,6 +64,21 @@ export class AuthService {
         catch(error){
             this.logger.error(error);
         }
+    }
+
+    async logout(userId : string) : Promise<Boolean> {
+        await this.prisma.user.update({
+            where : {
+                id : userId,
+                refreshTokenHash : {
+                    not : null
+                }
+            },
+            data : {
+                refreshTokenHash : null
+            }
+        });
+        return true
     }
 
     async updateHash(userId:string,rt:string) : Promise<void>{
