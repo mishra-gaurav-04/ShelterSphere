@@ -25,11 +25,4 @@ model User {
   isOwner        Boolean @default(false)
 }
 
-model Listings {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  location    String
-  description String
-  images      String[]
 
-}
