@@ -32,16 +32,23 @@ export class AuthController {
     }
 
     @Post('/sign-out')
+    @UseGuards(AccessGuard)
     logout(){}
 
-    @UseGuards(RefreshGuard)
     @Post('/refresh')
+    @UseGuards(RefreshGuard)
     refresh(){}
 
     @Get('/test')
     @UseGuards(AccessGuard)
     test(){
         return "Hello this is the test route"
+    }
+
+    @Pubic()
+    @Get('/greet')
+    greet(){
+        return "hi hello and in between"
     }
 
 }
